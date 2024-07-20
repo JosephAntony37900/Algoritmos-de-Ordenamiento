@@ -4,7 +4,7 @@ export function renderCharts({ insertionTimes, sortingTimes, searchTimes }) {
     const ctx3 = document.getElementById('searchTimeChart').getContext('2d');
 
     new Chart(ctx1, {
-        type: 'bar',
+        type: 'bar', 
         data: {
             labels: ['Array', 'LinkedList'],
             datasets: [{

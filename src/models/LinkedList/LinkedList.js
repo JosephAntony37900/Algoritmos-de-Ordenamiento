@@ -2,6 +2,9 @@
 import Node from "./Node.js";
 
 class LinkedList {
+    head;
+    size;
+
     constructor() {
         this.head = null;
         this.size = 0;
@@ -31,10 +34,10 @@ class LinkedList {
             current = this.head;
 
             while (current.next != null) {
-                if (current.value > current.next.value) {
-                    let temp = current.value;
+                if (current.value.business > current.next.value.business) {
+                    let aux = current.value;
                     current.value = current.next.value;
-                    current.next.value = temp;
+                    current.next.value = aux;
                     swapped = true;
                 }
                 current = current.next;
@@ -80,7 +83,7 @@ class LinkedList {
         if (!b) return a;
 
         let result;
-        if (a.value <= b.value) {
+        if (a.value.business <= b.value.business) {
             result = a;
             result.next = this.#sortedMerge(a.next, b);
         } else {
@@ -102,7 +105,7 @@ class LinkedList {
         let current = this.head.next;
 
         while (current) {
-            if (current.value > max) {
+            if (current.value.business > max.business) {
                 max = current.value;
             }
             current = current.next;
@@ -136,6 +139,17 @@ class LinkedList {
             current.value = output[i];
             current = current.next;
         }
+    }
+
+    linearSearch(target) {
+        let current = this.head
+        while (current) {
+            if (current.value.business === target) {
+                return current.value;
+            }
+            current = current.next;
+        }
+        return null;
     }
 }
 

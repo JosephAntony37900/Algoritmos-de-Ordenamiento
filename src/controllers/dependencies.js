@@ -1,18 +1,39 @@
 import LinkedList from "../models/LinkedList/LinkedList.js";
+import MyArray from "../models/MyArray.js";
 
-let lista = new LinkedList()
+async function fetchData() {
+    let response = await fetch("./src/controllers/bussines.json");
+    let data = await response.json();
 
-fetch("./controllers/bussines.json")
-.then(response => response.json())
-.then(data => {
-    //En esta parte unicamente se muestran los primeros 100 registros
-    for (let x=0;x<10000;x++) {
-        let item = document.createElement("li");
-        item.textContent = data[x].name;
-        root.appendChild(item)
+    return data
+}
+
+const processData = fetchData().then(data => {
+    let list = new LinkedList();
+    let arrayData = new MyArray()
+    
+    try {
+
+        const startInsertArray = performance.now();
+        for (let i = 0; i < 1000; i++) {
+            arrayData.push(data[i]);
+        }
+        const endInsertArray = performance.now();
+
+        let timeInsertArray = endInsertArray - startInsertArray;
+
+        const startInsertLinkedList = performance.now();
+        for (let i = 0; i < 1000; i++) {//Insercion en LinkedList
+            list.add(data[i]);
+        }
+        const endInsertLinkedList = performance.now();
+
+        let timeInsertLinkedList = endInsertLinkedList - startInsertLinkedList;
+
+        return {list, arrayData, timeInsertArray, timeInsertLinkedList}
+    } catch (err) {
+        console.error(err);
     }
 })
-.catch(err => console.log(err))
 
-export {lista}
-
+export { processData };
