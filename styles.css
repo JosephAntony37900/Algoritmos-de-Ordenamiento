@@ -1,19 +1,160 @@
 /* styles.css */
+:root {
+    --white: #ffffff;
+    --orange: #ef8354;
+    --gray: #4F5D75;
+    --black: #2D3142
+}
+
+*{
+    font-family: "League Spartan", sans-serif;
+}
+
+
 body {
     background-color: #ffffff95;
     color: #000000;
-    font-family: Arial, sans-serif;
+    padding: 0;
+    margin: 0%;
 }
 
-.container {
+header, footer {
+    position: relative;
+    background-color: var(--orange);
+    width: 100%;
+    height: 8.5vh;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
+    align-items: center;
+    color: var(--white);
+}
+
+h3 {
+    width: 95vw;
+    color: var(--gray);
+    text-align: center;
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.logo {
+    left: 2vw;
+    position: absolute;
+    font-family: "League Gothic", sans-serif;
+    font-size: 32px;
+    letter-spacing: 2px;
+}
+
+#search-form {
+    display: flex;
+    height: 32px;
+    width: 40vw;
+}
+#search-form  input {
+    width: 100%;
+    font-size: 18px;
+    padding: 5px;
+    border: none;
+}
+#search-form  input:focus {
+    outline: solid 3px var(--orange);
+}
+#search-form button {
+    width: 38px;
+    font-size: 18px;
+    padding: 5px;
+    border: none;
+    box-sizing: border-box;
+    border-left: solid 3px var(--orange);
+}
+
+.body-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
     padding: 20px;
 }
 
+#search-results {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.info-container {
+    display: flex;
+    gap: 2vw;
+}
+
+.linkedList-info {
+    width: 30vw;
+    position: relative;
+    background-color: var(--gray);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.info-time {
+    width: 80%;
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0 0 25px 0;
+    color: var(--white);
+}
+.title {
+    color: var(--white);
+    font-size: 28px;
+
+    letter-spacing: 2px;
+}
+
+.array-info {
+    width: 30vw;
+    position: relative;
+    background-color: var(--orange);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.charts-container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
 canvas {
-    width: 45%;
+    width: 35%;
     margin-bottom: 20px;
 }
 
+
+table {
+    table-layout: fixed;
+    width: 80%;
+    border-collapse: collapse;
+    border: 3px solid var(--gray);
+}
+th {
+    border: solid 3px var(--gray);
+    background-color: var(--orange);
+    color: var(--white);
+    padding: 10px;
+    font-size: 20px;
+    letter-spacing: 1.5px;
+}
+td {
+    border: solid 3px var(--gray);
+    color: var(--gray);
+    padding: 10px;
+}

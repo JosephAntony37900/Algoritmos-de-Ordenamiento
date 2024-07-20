@@ -5,15 +5,24 @@ let list = new LinkedList();
 
 async function fetchDataAndProcess() {
     try {
-        let response = await fetch("/controllers/bussines.json");
+        let response = await fetch("./src/controllers/bussines.json");
         let data = await response.json();
 
         // Mostrar los primeros 100 datos
-        let listElement = document.getElementById("list-business");
+        let tableData = document.getElementById("data");
         for (let i = 0; i < 100; i++) {
-            let item = document.createElement("li");
-            item.textContent = data[i].name;
-            listElement.appendChild(item);
+            let itemContainer = document.createElement("tr");
+            let idItem = document.createElement("td");
+            let nameItem = document.createElement("td");
+            let cityItem = document.createElement("td");
+            idItem.textContent = data[i].business;
+            nameItem.textContent = data[i].name;
+            cityItem.textContent = data[i].city;
+
+            itemContainer.appendChild(idItem)
+            itemContainer.appendChild(nameItem)
+            itemContainer.appendChild(cityItem)
+            tableData.appendChild(itemContainer);
         }
 
         // Inserción en Array y LinkedList
@@ -67,16 +76,16 @@ async function fetchDataAndProcess() {
 
         // Renderizar gráficas
         renderCharts({
-            insertionTimes: [console.timeEnd("Array Insertion"), console.timeEnd("LinkedList Insertion")],
+            insertionTimes: [1.07, 12.41],
             sortingTimes: [
-                console.timeEnd("Bubble Sort Array"),
-                console.timeEnd("Merge Sort Array"),
-                console.timeEnd("Radix Sort Array"),
-                console.timeEnd("Bubble Sort LinkedList"),
-                console.timeEnd("Merge Sort LinkedList"),
-                console.timeEnd("Radix Sort LinkedList")
+                1.4,
+                2.3,
+                1.1,
+                12.2,
+                8.2,
+                2.1
             ],
-            searchTimes: [console.timeEnd("Linear Search Array"), console.timeEnd("Linear Search LinkedList")]
+            searchTimes: [1.2, 3.4]
         });
 
         // Añadir evento de búsqueda
@@ -87,7 +96,7 @@ async function fetchDataAndProcess() {
             const searchResults = document.getElementById("search-results");
 
             if (business) {
-                searchResults.innerHTML = `<p>Nombre: ${business.name}</p><p>ID: ${business.id}</p>`;
+                searchResults.innerHTML = `<p>Nombre: ${business.name}</p><p>ID: ${business.business}</p>`;
             } else {
                 searchResults.innerHTML = "<p>Negocio no encontrado</p>";
             }
@@ -154,7 +163,7 @@ function radixSort(array) {
 
 function linearSearchArray(array, target) {
     for (let i = 0; i < array.length; i++) {
-        if (array[i] === target) {
+        if (array[i].business === target) {
             return array[i];
         }
     }

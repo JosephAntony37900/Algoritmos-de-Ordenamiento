@@ -4,23 +4,81 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mimidores</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=League+Gothic&family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
+    <header>
+        <span class="logo">ORDER</span>
         <form id="search-form">
-            <label for="search-input">Buscar data por ID:</label>
-            <input type="text" id="search-input" required>
-            <button type="submit">Buscar</button>
+            <input placeholder="Buscar" type="text" id="search-input" required>
+            <button type="submit">
+                <!-- <i class="fa-solid fa-magnifying-glass"></i> -->
+            </button>
         </form>
-        <div id="search-results"></div>
+    </header>
+    <main class="body-container">
+        <div id="search-results">
+            <span id="time-result"></span>
+            <h3>Resultado</h3>
+            <p></p>
+            <table id="result">
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Ciudad</th>
+                </tr>
+                <tr class="results-row">
+                </tr>
+            </table>
+        </div>
 
-        <canvas id="insertionTimeChart"></canvas>
-        <canvas id="sortingTimeChart"></canvas>
-        <canvas id="searchTimeChart"></canvas>
-    </div>
-    <ul id="list-business"></ul>
+        <h3>Estructuras utilizadas</h3>
+        <div class="info-container">
+            <div class="linkedList-info">
+                <h4 class="title">LinkedList</h4>
+                <p class="info-time">Inserción: </p>
+                <p class="info-time">Bubble Sort: </p>
+                <p class="info-time">Merge Sort: </p>
+                <p class="info-time">Radix Sort: </p>
+                <p class="info-time">Búsqueda lineal: </p>
+            </div>
+            <div class="array-info">
+                <h4 class="title">Array</h4>
+                <p class="info-time">Inserción: </p>
+                <p class="info-time">Bubble Sort: </p>
+                <p class="info-time">Merge Sort:</p>
+                <p class="info-time">Radix Sort:</p>
+                <p class="info-time">Búsqueda lineal: </p>
+            </div>
+        </div>
+
+        <h3>Tiempo graficado</h3>
+        <div class="charts-container">
+            <canvas id="insertionTimeChart"></canvas>
+            <canvas id="sortingTimeChart"></canvas>
+            <canvas id="searchTimeChart"></canvas>
+        </div>
+
+        <h3>Datos</h3>
+        <table id="data">
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Ciudad</th>
+            </tr>
+        </table>
+    </main>
+    <footer>
+
+    </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script type="module" src="/controllers/script.js"></script>
+    <script type="module" src="/src/controllers/script.js"></script>
 </body>
 </html>
