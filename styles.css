@@ -183,6 +183,8 @@ td {
     border: solid 3px var(--gray);
     color: var(--gray);
     padding: 10px;
+    word-wrap: break-word;
+    white-space: normal; 
 }
 
 footer {

@@ -7,12 +7,16 @@ function searchData(event, array) {
     const business = array.linearSearch(searchInput)
     const end = performance.now(); // Marca el tiempo de finalización
 
+    renderResult(business, (end-start))   
+}
+
+function renderResult(business, time){
     const searchResults = document.getElementById("search-results");
 
     if (business) {
         console.log("si");
         searchResults.innerHTML = `
-                                <p id="time-result">Tiempo: ${end - start} </p>
+                                <p id="time-result">Tiempo: ${time} </p>
                                 <h3 >Resultado</h3>
                                 <table id="result">
                                     <tr>
@@ -29,7 +33,7 @@ function searchData(event, array) {
     } else {
         console.log("no");
         searchResults.innerHTML = `
-                                    <p id="time-result">Tiempo: ${end - start} </p>
+                                    <p id="time-result">Tiempo: ${time} </p>
                                     <span id="no-result">Sin coincidencias</span>`;
     }
 }
