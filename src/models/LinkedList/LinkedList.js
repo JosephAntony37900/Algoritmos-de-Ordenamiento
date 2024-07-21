@@ -2,6 +2,9 @@
 import Node from "./Node.js";
 
 class LinkedList {
+    head;
+    size;
+
     constructor() {
         this.head = null;
         this.size = 0;
@@ -31,10 +34,10 @@ class LinkedList {
             current = this.head;
 
             while (current.next != null) {
-                if (current.value > current.next.value) {
-                    let temp = current.value;
+                if (current.value.business > current.next.value.business) {
+                    let aux = current.value;
                     current.value = current.next.value;
-                    current.next.value = temp;
+                    current.next.value = aux;
                     swapped = true;
                 }
                 current = current.next;
@@ -43,51 +46,55 @@ class LinkedList {
     }
 
     mergeSort() {
-        this.head = this.#mergeSortRec(this.head);
+        if (!this.head || !this.head.next) return;
+
+        this.head = this.#mergeSortIterative(this.head);
     }
 
-    #mergeSortRec(head) {
-        if (head == null || head.next == null) {
-            return head;
+    #mergeSortIterative(head) {
+        let step = 1;
+        let left, right;
+        let tail;
+        const dummy = new Node(null);
+        dummy.next = head;
+
+        while (true) {
+            let current = dummy.next;
+            let left = current;
+            current = this.#split(current, step);
+            if (!current) break;
+            let right = current;
+            current = this.#split(current, step);
+
+            tail = dummy;
+            while (left || right) {
+                if (!right || (left && left.value.business <= right.value.business)) {
+                    tail.next = left;
+                    left = left.next;
+                } else {
+                    tail.next = right;
+                    right = right.next;
+                }
+                tail = tail.next;
+            }
+
+            tail.next = null;
+            step *= 2;
         }
 
-        const middle = this.#getMiddle(head);
-        const nextOfMiddle = middle.next;
-
-        middle.next = null;
-
-        const left = this.#mergeSortRec(head);
-        const right = this.#mergeSortRec(nextOfMiddle);
-
-        return this.#sortedMerge(left, right);
+        return dummy.next;
     }
 
-    #getMiddle(head) {
-        if (!head) return head;
+    #split(node, step) {
+        if (!node) return null;
 
-        let slow = head;
-        let fast = head;
-
-        while (fast.next !== null && fast.next.next !== null) {
-            slow = slow.next;
-            fast = fast.next.next;
+        for (let i = 1; node.next && i < step; i++) {
+            node = node.next;
         }
-        return slow;
-    }
 
-    #sortedMerge(a, b) {
-        if (!a) return b;
-        if (!b) return a;
-
-        let result;
-        if (a.value <= b.value) {
-            result = a;
-            result.next = this.#sortedMerge(a.next, b);
-        } else {
-            result = b;
-            result.next = this.#sortedMerge(a, b.next);
-        }
-        return result;
+        const next = node.next;
+        node.next = null;
+        return next;
     }
 
     radixSort() {
@@ -102,7 +109,7 @@ class LinkedList {
         let current = this.head.next;
 
         while (current) {
-            if (current.value > max) {
+            if (current.value.business > max.business) {
                 max = current.value;
             }
             current = current.next;
@@ -135,7 +142,18 @@ class LinkedList {
         for (let i = 0; i < this.size; i++) {
             current.value = output[i];
             current = current.next;
+      }
+    }
+
+    linearSearch(target) {
+        let current = this.head
+        while (current) {
+            if (current.value.business === target) {
+                return current.value;
+            }
+            current = current.next;
         }
+        return null;
     }
 }
 
