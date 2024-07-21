@@ -53,8 +53,6 @@ class LinkedList {
 
     #mergeSortIterative(head) {
         let step = 1;
-        let left, right;
-        let tail;
         const dummy = new Node(null);
         dummy.next = head;
 
@@ -66,7 +64,7 @@ class LinkedList {
             let right = current;
             current = this.#split(current, step);
 
-            tail = dummy;
+            let tail = dummy;
             while (left || right) {
                 if (!right || (left && left.value.business <= right.value.business)) {
                     tail.next = left;
@@ -97,10 +95,9 @@ class LinkedList {
         return next;
     }
 
-
     radixSort() {
         const max = this.#getMax();
-        for (let exp = 1; Math.floor(max / exp) > 0; exp *= 10) {
+        for (let exp = 1; Math.floor(max.business / exp) > 0; exp *= 10) {
             this.#countSort(exp);
         }
     }
@@ -124,7 +121,7 @@ class LinkedList {
 
         let current = this.head;
         while (current) {
-            count[Math.floor(current.value / exp) % 10]++;
+            count[Math.floor(current.value.business / exp) % 10]++;
             current = current.next;
         }
 
@@ -134,8 +131,8 @@ class LinkedList {
 
         current = this.head;
         while (current) {
-            output[count[Math.floor(current.value / exp) % 10] - 1] = current.value;
-            count[Math.floor(current.value / exp) % 10]--;
+            output[count[Math.floor(current.value.business / exp) % 10] - 1] = current.value;
+            count[Math.floor(current.value.business / exp) % 10]--;
             current = current.next;
         }
 
@@ -143,8 +140,9 @@ class LinkedList {
         for (let i = 0; i < this.size; i++) {
             current.value = output[i];
             current = current.next;
-      }
+        }
     }
+
 
     linearSearch(target) {
         let current = this.head

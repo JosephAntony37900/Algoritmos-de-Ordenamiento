@@ -1,4 +1,4 @@
-function renderData(arrayData){
+function renderData(arrayData) {
     // Mostrar los primeros 100 datos
     let tableData = document.getElementById("data");
     for (let i = 0; i < 100; i++) {
@@ -10,9 +10,9 @@ function renderData(arrayData){
         nameItem.textContent = arrayData.get(i).name;
         cityItem.textContent = arrayData.get(i).city;
 
-        itemContainer.appendChild(idItem)
-        itemContainer.appendChild(nameItem)
-        itemContainer.appendChild(cityItem)
+        itemContainer.appendChild(idItem);
+        itemContainer.appendChild(nameItem);
+        itemContainer.appendChild(cityItem);
         tableData.appendChild(itemContainer);
     }
 }
