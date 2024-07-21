@@ -16,6 +16,8 @@ export function renderCharts({ insertionTimes, sortingTimes, searchTimes }) {
             }]
         },
         options: {
+            maintainAspectRatio: true,
+            responsive: false,
             scales: {
                 y: {
                     beginAtZero: true,
@@ -56,6 +58,8 @@ export function renderCharts({ insertionTimes, sortingTimes, searchTimes }) {
             }]
         },
         options: {
+            maintainAspectRatio: true,
+            responsive: false,
             scales: {
                 y: {
                     beginAtZero: true,
@@ -77,11 +81,13 @@ export function renderCharts({ insertionTimes, sortingTimes, searchTimes }) {
                 label: 'Search Time (ms)',
                 data: searchTimes,
                 backgroundColor: ['#ef8354', '#4F5D75'],
-                borderColor: ['#ef8354)', '#4F5D75'],
+                borderColor: ['#ef8354', '#4F5D75'],
                 borderWidth: 1
             }]
         },
         options: {
+            maintainAspectRatio: true,
+            responsive: false,
             scales: {
                 y: {
                     beginAtZero: true,
