@@ -56,6 +56,7 @@ class MyArray {
     }
     
     radixSort() {
+
         const array = this.datos;
 
         if (array.length === 0) return array;
@@ -91,6 +92,16 @@ class MyArray {
         }
     
         return array;
+        const maxNum = Math.max(...this.datos);
+        let digit = 1;
+        while (digit <= maxNum) {
+            let buckets = [...Array(10)].map(() => []);
+            for (let num of this.datos) {
+                buckets[Math.floor(num / digit) % 10].push(num);
+            }
+            this.datos = [].concat(...buckets);
+            digit *= 10;
+        }
     }
     
     linearSearch(target) {

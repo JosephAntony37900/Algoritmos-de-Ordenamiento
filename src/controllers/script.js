@@ -19,12 +19,12 @@ processData.then(({list, arrayData, timeInsertArray, timeInsertLinkedList}) => {
     arrayData.radixSort();
     const endRadixArray = performance.now(); 
 
-   const startBublleLinkedList = performance.now();
-  list.bubbleSort();
+    const startBublleLinkedList = performance.now();
+    list.bubbleSort();
     const endBublleLinkedList = performance.now();
 
     const startMergeLinkedList = performance.now();
-   list.mergeSort();
+    list.mergeSort();
     const endMergeLinkedList = performance.now();
 
     const startRadixLinkedList = performance.now();

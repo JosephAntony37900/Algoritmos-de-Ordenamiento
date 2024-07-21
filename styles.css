@@ -185,7 +185,6 @@ td {
     padding: 10px;
 }
 
-
 footer {
     background-color: var(--orange);
     width: 100%;
@@ -195,4 +194,3 @@ footer {
     align-items: center;
     color: var(--white);
 }
-
